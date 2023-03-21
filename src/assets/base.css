@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap');
+
+
+:root {
+  --appPrimaryBg: #1c2a3a;
+  --appSecondaryBg: #2d4158;
+  --appPrimaryText: #dddbdb;
+  font-family: 'Nunito Sans', sans-serif;
+
+}
+
+.app-primary-bg {
+  background-color: var(--appPrimaryBg);
+}
+.app-secondary-bg {
+  background-color: var(--appSecondaryBg);
+}
+
+.app-primary-text{
+  color: var(--appPrimaryText);
+}
+
+.bg-gold {
+  background-color: #d2a003;
+}
+
+
+
+
+
+body {
+  transition: color 0.5s, background-color 0.5s;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
