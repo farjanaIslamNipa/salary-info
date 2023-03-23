@@ -9,6 +9,25 @@
 
 }
 
+.common-input{
+  @apply focus:outline-none bg-[#1a2e44] w-[40%] py-2 px-3
+}
+.percentage-input{
+  @apply bg-gray-600 w-[20%] focus:outline-none py-2 text-center
+}
+.common-td {
+  @apply text-sm font-light px-2 py-1
+}
+.input-group-wrapper {
+  @apply flex justify-center border border-gray-500 rounded-sm w-full
+}
+.footer-right-align-td{
+  @apply text-sm font-bold px-2 py-2 text-right
+}
+.footer-left-align-td{
+  @apply text-sm font-bold px-2 py-2 text-left
+}
+
 .app-primary-bg {
   background-color: var(--appPrimaryBg);
 }
@@ -22,11 +41,8 @@
 
 .bg-gold {
   background-color: #d2a003;
+  /* background-color: #03d7d7; */
 }
-
-
-
-
 
 body {
   transition: color 0.5s, background-color 0.5s;
