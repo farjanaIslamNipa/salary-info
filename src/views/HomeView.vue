@@ -1,6 +1,6 @@
 <template>
   <div class="pt-5 pb-10 app-primary-bg app-primary-text h-screen">
-    <div class="grid grid-cols-12 gap-4 lg:px-20 px-5">
+    <div class="grid grid-cols-12 gap-4 px-5">
       <div class="col-span-9">
         <div class="app-secondary-bg">
           <div class="py-1 bg-gold capitalize">
@@ -18,24 +18,24 @@
                 <col span="1" style="width: 18%" />
                 <col span="1" style="width: 18%" />
               </colgroup>
-              <thead class="app-primary-bg">
+              <thead class="bg-[#1e344e]">
                 <tr>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Month
                   </th>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Gross Salary
                   </th>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Basic
                   </th>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Home rent
                   </th>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Medical
                   </th>
-                  <th scope="col" class="footer-left-align-td">
+                  <th scope="col" class="left-align-td">
                     Conveyance
                   </th>
                 </tr>
@@ -51,57 +51,57 @@
               </tbody>
               <tfoot>
                 <tr class="bg-blue-500">
-                  <td scope="col" class="footer-left-align-td">Total</td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="left-align-td">Total</td>
+                  <td scope="col" class="right-align-td">
                     {{ getSum.totalGrossSalary }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ getSum.totalBasicSalary }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ getSum.totalHomeRent }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ getSum.totalMedicalAllowance }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ getSum.totalConveyanceAllowance }}
                   </td>
                 </tr>
                 <tr class="bg-blue-900">
-                  <td colspan="2" class="footer-left-align-td">
+                  <td colspan="2" class="left-align-td">
                     Tax Exemption
                   </td>
-                  <td scope="col" class="footer-right-align-td">0</td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">0</td>
+                  <td scope="col" class="right-align-td">
                     {{ homeRentTaxExemption }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ medicalTaxExemption }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ conveyanceTaxExemption }}
                   </td>
                 </tr>
                 <tr class="bg-gray-600">
-                  <td colspan="2" class="footer-left-align-td">
+                  <td colspan="2" class="left-align-td">
                     Taxable
                   </td>
-                  <td scope="col" class="footer-right-align-td">{{ taxableBasicSalary }}</td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">{{ taxableBasicSalary }}</td>
+                  <td scope="col" class="right-align-td">
                     {{ taxableHomeRent }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">
+                  <td scope="col" class="right-align-td">
                     {{ taxableMedicalAllowance }}
                   </td>
-                  <td scope="col" class="footer-right-align-td">{{ taxableConveyanceAllowance }}</td>
+                  <td scope="col" class="right-align-td">{{ taxableConveyanceAllowance }}</td>
                 </tr>
               </tfoot>
             </table>
           </div>
         </div>
         <div class="mt-6">
-        <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center">
             <div class="flex gap-3 items-center">
             <div>
                 <label class="text-sm block" for="">Festive Bonus One</label>
@@ -113,15 +113,14 @@
             </div>
             </div>
             <div>
-            <p class="pr-2 font-semibold"><span class="text-lg text-blue-400">Total Taxable Amount :&nbsp;</span> <span class="text-xl">{{ totalTaxableAmount }}</span></p>
+            <p class="pr-2 font-semibold"><span class="text-lg text-blue-400">Total Taxable Income :&nbsp;</span> <span class="text-xl">{{ totalTaxableAmount }}</span></p>
             </div>
         </div>
       </div>
-        <!-- <TotalTaxableSection /> -->
-      </div>
+    </div>
       <div class="col-span-3">
-        <div class="app-secondary-bg p-6">
-        
+        <div class="app-secondary-bg pb-4">
+          <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" />
         </div>
       </div>
     </div>
@@ -132,7 +131,7 @@
 <script setup>
 import sourceData from "../../data.json";
 import SalaryTableRow from "@/components/SalaryTableRow.vue";
-// import TotalTaxableSection from "@/components/TotalTaxableSection.vue";
+import PayableAmountCalculation from "@/components/PayableAmountCalculation.vue";
 import { ref, computed } from "vue";
 
 const salaryData = ref([...sourceData]);

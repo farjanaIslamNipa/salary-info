@@ -21,10 +21,10 @@
 .input-group-wrapper {
   @apply flex justify-center border border-gray-500 rounded-sm w-full
 }
-.footer-right-align-td{
+.right-align-td{
   @apply text-sm font-bold px-2 py-2 text-right
 }
-.footer-left-align-td{
+.left-align-td{
   @apply text-sm font-bold px-2 py-2 text-left
 }
 
