@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-5 pb-10 app-primary-bg app-primary-text h-screen">
+  <div class="pt-5 pb-10 app-primary-bg app-primary-text">
     <div class="grid grid-cols-12 gap-4 px-5">
       <div class="col-span-9">
         <div class="app-secondary-bg">
