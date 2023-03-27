@@ -56,8 +56,16 @@
                     </tr>
                     <tr>
                         <td colspan="4" class="w-full py-2 bg-[#1e344e] pl-3 font-semibold text-right pr-3">
-                            <span class="text-lg text-blue-400">Total Payable : &nbsp;</span>
+                            <span class="text-[16px] text-blue-400">Total Payable : &nbsp;</span>
                             <span>{{ totalPayable }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <div class="flex justify-between items-center">
+                                <label for="">Total Invested Amount:</label>
+                                <input type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm">
+                            </div>
                         </td>
                     </tr>
                 </tbody>
