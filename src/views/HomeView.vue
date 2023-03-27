@@ -1,15 +1,15 @@
 <template>
-  <div class="pt-5 pb-10 app-primary-bg app-primary-text">
+  <div class="pt-5 pb-10 app-primary-text">
     <div class="grid grid-cols-12 gap-4 px-5">
-      <div class="col-span-9">
+      <div class="xl:col-span-9 lg:col-span-8 col-span-12">
         <div class="app-secondary-bg">
           <div class="py-1 bg-gold capitalize">
             <h3 class="text-xl font-bold text-center text-gray-700">
               salary information
             </h3>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-[1000px] xl:w-full">
+          <div class="overflow-x-auto app-scroll-bar">
+            <table class="w-[954px] xl:w-full">
               <colgroup>
                 <col span="1" style="width: 16%" />
                 <col span="1" style="width: 12%" />
@@ -101,25 +101,25 @@
           </div>
         </div>
         <div class="mt-6">
-          <div class="flex justify-between items-center">
-            <div class="flex gap-3 items-center">
+          <div class="block md:flex justify-between items-center">
+            <div class="block sm:flex gap-3 items-center justify-end md:justify-between">
             <div>
                 <label class="text-sm block" for="">Festive Bonus One</label>
                 <input v-model="festiveBonusOne" type="number" class="block focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm">
             </div>
-            <div>
+            <div class="mt-3 sm:mt-0">
                 <label class="text-sm block" for="">Festive Bonus Two</label>
                 <input v-model="festiveBonusTwo" type="number" class="block focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm">
             </div>
             </div>
             <div>
-            <p class="pr-2 font-semibold"><span class="text-lg text-blue-400">Total Taxable Income :&nbsp;</span> <span class="text-xl">{{ totalTaxableAmount }}</span></p>
+            <p class="pr-2 font-semibold mt-5 md:mt-0 text-left sm:text-right md:text-left"><span class="text-[15px] lg:text-lg text-blue-400">Total Taxable Income :&nbsp;</span> <span class="text-xl">{{ totalTaxableAmount }}</span></p>
             </div>
         </div>
       </div>
     </div>
-      <div class="col-span-3">
-        <div class="app-secondary-bg pb-4">
+      <div class="xl:col-span-3 lg:col-span-4 col-span-12">
+        <div class="app-secondary-bg ">
           <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" />
         </div>
       </div>

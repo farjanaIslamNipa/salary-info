@@ -9,6 +9,11 @@
 
 }
 
+body{
+  -webkit-animation: fadein 1.5s;
+  background-color: #1c2a3a;
+}
+
 .common-input{
   @apply focus:outline-none bg-[#1a2e44] w-[40%] py-2 px-3
 }
@@ -19,7 +24,7 @@
   @apply text-sm font-light px-2 py-1
 }
 .input-group-wrapper {
-  @apply flex justify-center border border-gray-500 rounded-sm w-full
+  @apply flex border border-gray-500 rounded-sm w-full
 }
 .right-align-td{
   @apply text-sm font-bold px-2 py-2 text-right
@@ -61,4 +66,22 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.app-scroll-bar::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(51, 51, 51, 0.3);
+  border-radius: 10px;
+  background-color: #2d4158;
+}
+
+.app-scroll-bar::-webkit-scrollbar {
+  padding-top: 10px;
+  height: 8px;
+  background-color: #2d4158;
+}
+
+.app-scroll-bar::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(51, 51, 51, 0.3);
+  background-color: #d2a003;
 }
