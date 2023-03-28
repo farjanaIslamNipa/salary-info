@@ -60,11 +60,35 @@
                             <span>{{ totalPayable }}</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td colspan="4">
-                            <div class="flex justify-between items-center">
-                                <label for="">Total Invested Amount:</label>
-                                <input type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm">
+                    <tr class="bg-[#1e344e]">
+                        <td colspan="4" class="py-2">
+                            <div class="flex justify-between items-center px-2">
+                                <label class="text-[15px] text-blue-400 w-2/3" for="">Total Invested Amount:</label>
+                                <input v-model.number="investedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-[#1e344e]">
+                        <td colspan="4" class="py-2">
+                            <div class="flex justify-between items-center px-2">
+                                <label class="text-[15px] text-blue-400 w-2/3" for="">Allowed Invested Amount:</label>
+                                <input v-model="allowedInvestedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-[#1e344e]">
+                        <td colspan="4" class="pt-2 pb-4">
+                            <div class="flex justify-between items-center px-2">
+                                <p class="text-[15px] text-blue-400">Discount :</p>
+                                <p class="text-right">{{ applicableDiscount }}</p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-gray-600">
+                        <td colspan="4" class="pt-2 py-2">
+                            <div class="flex justify-between items-center px-2">
+                                <p class="text-[17px] font-semibold text-[#00b4f9]">Actual Total Payable Amount :</p>
+                                <p class="text-right font-bold text-xl text-[#dab53e]">{{ actualTotalPayableAmount }}</p>
                             </div>
                         </td>
                     </tr>
@@ -80,10 +104,13 @@ const props = defineProps({
     totalTaxableAmount: Number
 })
 
+const investedAmount = ref('')
+
 const remainingAmountAfterFirstThreeLakh = computed(() => {
     return props.totalTaxableAmount >= 300000 ? (props.totalTaxableAmount - 300000) : 0
 })
 
+// For first one lakh
 const nextOneLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
@@ -102,6 +129,8 @@ const nextOneLakhTaxableIncome = computed(() => {
         "remainingAmount": remainingAmount
     }
 })
+
+// For next three lakh
 const nextThreeLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
@@ -119,6 +148,8 @@ const nextThreeLakhTaxableIncome = computed(() => {
         "remainingAmount": remainingAmount
     }
 })
+
+// For next four lakh
 const nextFourLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
@@ -136,6 +167,8 @@ const nextFourLakhTaxableIncome = computed(() => {
         "remainingAmount": remainingAmount
     }
 })
+
+// For next five lakh
 const nextFiveLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
@@ -153,12 +186,36 @@ const nextFiveLakhTaxableIncome = computed(() => {
         "remainingAmount": remainingAmount
     }
 })
+
 const restTaxableIncome = computed(() => {
     return (nextFiveLakhTaxableIncome.value.remainingAmount > 0) ?  Math.round(nextFiveLakhTaxableIncome.value.remainingAmount * 25 / 100) : 0
 })
 
 const totalPayable = computed(() => {
-    return nextOneLakhTaxableIncome.value.payableAmount + nextThreeLakhTaxableIncome.value.payableAmount + nextFourLakhTaxableIncome.value.payableAmount + nextFiveLakhTaxableIncome.value.payableAmount + restTaxableIncome.value
+    return nextOneLakhTaxableIncome.value.payableAmount 
+            + nextThreeLakhTaxableIncome.value.payableAmount 
+            + nextFourLakhTaxableIncome.value.payableAmount 
+            + nextFiveLakhTaxableIncome.value.payableAmount 
+            + restTaxableIncome.value
+})
+
+const allowedInvestedAmount = computed(() => {
+    return props.totalTaxableAmount >= 300000 ? Math.round(props.totalTaxableAmount * 20 / 100) : 0
+})
+
+const applicableDiscount = computed(() => {
+    let discount = 0;
+    if(investedAmount.value <= allowedInvestedAmount.value){
+        discount = Math.round(+investedAmount.value * 15 / 100)
+    }
+    if(investedAmount.value > allowedInvestedAmount.value){
+        discount = Math.round(allowedInvestedAmount.value * 15 / 100)
+    }
+    return discount
+})
+
+const actualTotalPayableAmount = computed(() => {
+    return totalPayable.value - applicableDiscount.value
 })
 </script>
 
