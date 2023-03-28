@@ -1,6 +1,22 @@
 <template>
-  <div class="pt-5 pb-10 app-primary-text">
-    <div class="grid grid-cols-12 gap-4 px-5">
+  <div class="pt-6 pb-10 app-primary-text">
+    <div class="px-5 space-y-3">
+      <div class="block lg:flex gap-5">
+        <div class="flex gap-2 items-end">
+          <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Name:</label>
+          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+        </div>
+        <div class="flex gap-2 items-end">
+          <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Designation:</label>
+          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+        </div>
+        <div class="flex gap-2 items-end">
+          <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Department:</label>
+          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-4 px-5 mt-6">
       <div class="xl:col-span-9 lg:col-span-8 col-span-12">
         <div class="app-secondary-bg">
           <div class="py-1 bg-gold capitalize">
@@ -122,7 +138,13 @@
         <div class="app-secondary-bg ">
           <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" />
         </div>
+        <div class="mt-5 flex justify-end">
+              <button @click="print" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">Print</button>
+        </div>
       </div>
+    </div>
+    <div v-if="printingSection" id="printSection">
+      <PrintingView />
     </div>
   </div>
 
@@ -132,6 +154,7 @@
 import sourceData from "../../data.json";
 import SalaryTableRow from "@/components/SalaryTableRow.vue";
 import PayableAmountCalculation from "@/components/PayableAmountCalculation.vue";
+import PrintingView from "@/components/PrintingView.vue";
 import { ref, computed } from "vue";
 
 const salaryData = ref([...sourceData]);
@@ -247,6 +270,17 @@ const totalTaxableAmount = computed(() => {
   return getTotalTaxableAmount
 })
 
+const printingSection = ref(false)
+
+const print = () => {
+  printingSection.value = true
+  const printContent = document.getElementById('printSection').innerHTML
+  const originalContent = document.body.innerHTML;
+  document.body.innerHTML = printContent;
+  window.print();
+  document.body.innerHTML = originalContent;
+
+}
 
 </script>
 

@@ -63,7 +63,7 @@
                     <tr class="bg-[#1e344e]">
                         <td colspan="4" class="py-2">
                             <div class="flex justify-between items-center px-2">
-                                <label class="text-[15px] text-blue-400 w-2/3" for="">Total Invested Amount:</label>
+                                <label class="text-[15px] text-blue-400 w-2/3" for="">Total Investment Amount :</label>
                                 <input v-model.number="investedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
                             </div>
                         </td>
@@ -71,16 +71,24 @@
                     <tr class="bg-[#1e344e]">
                         <td colspan="4" class="py-2">
                             <div class="flex justify-between items-center px-2">
-                                <label class="text-[15px] text-blue-400 w-2/3" for="">Allowed Invested Amount:</label>
+                                <label class="text-[15px] text-blue-400 w-2/3" for="">Allowable Investment Amount :</label>
                                 <input v-model="allowedInvestedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bg-[#1e344e]">
+                        <td colspan="4" class="py-2">
+                            <div class="flex justify-between items-center px-2">
+                                <p class="text-[15px] text-blue-400">Redemption for investment :</p>
+                                <p class="text-right pr-3">{{ applicableDiscount }}</p>
                             </div>
                         </td>
                     </tr>
                     <tr class="bg-[#1e344e]">
                         <td colspan="4" class="pt-2 pb-4">
                             <div class="flex justify-between items-center px-2">
-                                <p class="text-[15px] text-blue-400">Discount :</p>
-                                <p class="text-right">{{ applicableDiscount }}</p>
+                                <p class="text-[15px] text-blue-400 font-bold">AIT :</p>
+                                <input v-model="aitAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
                             </div>
                         </td>
                     </tr>
@@ -88,7 +96,7 @@
                         <td colspan="4" class="pt-2 py-2">
                             <div class="flex justify-between items-center px-2">
                                 <p class="text-[17px] font-semibold text-[#00b4f9]">Actual Total Payable Amount :</p>
-                                <p class="text-right font-bold text-xl text-[#dab53e]">{{ actualTotalPayableAmount }}</p>
+                                <p class="text-right font-bold text-xl text-[#dab53e] pr-3">{{ actualTotalPayableAmount }}</p>
                             </div>
                         </td>
                     </tr>
@@ -104,7 +112,10 @@ const props = defineProps({
     totalTaxableAmount: Number
 })
 
+// const emits = defineEmits(['remainingAmountAfterFirstThreeLakh'])
+
 const investedAmount = ref('')
+const aitAmount = ref('')
 
 const remainingAmountAfterFirstThreeLakh = computed(() => {
     return props.totalTaxableAmount >= 300000 ? (props.totalTaxableAmount - 300000) : 0
@@ -215,7 +226,7 @@ const applicableDiscount = computed(() => {
 })
 
 const actualTotalPayableAmount = computed(() => {
-    return totalPayable.value - applicableDiscount.value
+    return totalPayable.value - (applicableDiscount.value + +aitAmount.value)
 })
 </script>
 
