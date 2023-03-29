@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-6 pb-10 app-primary-text">
+  <div id="nonPrintable" class="pt-6 pb-10 app-primary-text">
     <div class="px-5 space-y-3">
       <div class="block lg:flex gap-5">
         <div class="flex gap-2 items-end">
@@ -136,16 +136,13 @@
     </div>
       <div class="xl:col-span-3 lg:col-span-4 col-span-12">
         <div class="app-secondary-bg ">
-          <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" />
-        </div>
-        <div class="mt-5 flex justify-end">
-              <button @click="print" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">Print</button>
+          <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" nonPrintable="nonPrintable" :salaryData="salaryData" :getSum="getSum" />
         </div>
       </div>
     </div>
-    <div v-if="printingSection" id="printSection">
+    <!-- <div v-if="printingSection" id="printSection">
       <PrintingView />
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -154,7 +151,7 @@
 import sourceData from "../../data.json";
 import SalaryTableRow from "@/components/SalaryTableRow.vue";
 import PayableAmountCalculation from "@/components/PayableAmountCalculation.vue";
-import PrintingView from "@/components/PrintingView.vue";
+// import PrintingView from "@/components/PrintingView.vue";
 import { ref, computed } from "vue";
 
 const salaryData = ref([...sourceData]);
@@ -272,15 +269,15 @@ const totalTaxableAmount = computed(() => {
 
 const printingSection = ref(false)
 
-const print = () => {
-  printingSection.value = true
-  const printContent = document.getElementById('printSection').innerHTML
-  const originalContent = document.body.innerHTML;
-  document.body.innerHTML = printContent;
-  window.print();
-  document.body.innerHTML = originalContent;
+// const print = () => {
+//   printingSection.value = true
+//   const printContent = document.getElementById('printSection').innerHTML
+//   const originalContent = document.body.innerHTML;
+//   document.body.innerHTML = printContent;
+//   window.print();
+//   document.body.innerHTML = originalContent;
 
-}
+// }
 
 </script>
 

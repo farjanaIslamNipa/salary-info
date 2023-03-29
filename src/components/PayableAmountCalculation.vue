@@ -1,16 +1,16 @@
 <template>
     <div>
-    <div class="bg-blue-500 py-1 px-4 mt-4 lg:mt-0">
-        <p class="text-lg font-bold text-gray-100">Payable Amount</p>
-    </div>
+        <div class="bg-blue-500 py-1 px-4 mt-4 lg:mt-0">
+            <p class="text-lg font-bold text-gray-100">Payable Amount</p>
+        </div>
         <div class="overflow-x-auto app-scroll-bar">
             <table class="min-w-full">
                 <colgroup>
-                <col span="1" style="width: 20%" />
-                <col span="1" style="width: 14%" />
-                <col span="1" style="width: 23%" />
-                <col span="1" style="width: 23%" />
-              </colgroup>
+                    <col span="1" style="width: 20%" />
+                    <col span="1" style="width: 14%" />
+                    <col span="1" style="width: 23%" />
+                    <col span="1" style="width: 23%" />
+                </colgroup>
                 <thead class="bg-[#1e344e]">
                     <th class="text-left pl-2">For</th>
                     <th class="left-align-td text-center">Rate</th>
@@ -19,39 +19,71 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">First <span class="font-bold">3</span> Lakh</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            First <span class="font-bold">3</span> Lakh
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">0</td>
                         <td class="text-right px-2 py-3 border-b border-gray-500">0</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ remainingAmountAfterFirstThreeLakh }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ remainingAmountAfterFirstThreeLakh }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">Next <span class="font-bold">1</span> Lakh</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            Next <span class="font-bold">1</span> Lakh
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">5%</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextOneLakhTaxableIncome.payableAmount }}</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextOneLakhTaxableIncome.remainingAmount }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextOneLakhTaxableIncome.payableAmount }}
+                        </td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextOneLakhTaxableIncome.remainingAmount }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">Next <span class="font-bold">3</span> Lakh</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            Next <span class="font-bold">3</span> Lakh
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">10%</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextThreeLakhTaxableIncome.payableAmount }}</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextThreeLakhTaxableIncome.remainingAmount }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextThreeLakhTaxableIncome.payableAmount }}
+                        </td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextThreeLakhTaxableIncome.remainingAmount }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">Next <span class="font-bold">4</span> Lakh</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            Next <span class="font-bold">4</span> Lakh
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">15%</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextFourLakhTaxableIncome.payableAmount }}</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextFourLakhTaxableIncome.remainingAmount }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextFourLakhTaxableIncome.payableAmount }}
+                        </td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextFourLakhTaxableIncome.remainingAmount }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">Next <span class="font-bold">5</span> Lakh</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            Next <span class="font-bold">5</span> Lakh
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">20%</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextFiveLakhTaxableIncome.payableAmount }}</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ nextFiveLakhTaxableIncome.remainingAmount }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextFiveLakhTaxableIncome.payableAmount }}
+                        </td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ nextFiveLakhTaxableIncome.remainingAmount }}
+                        </td>
                     </tr>
                     <tr>
-                        <td class="px-2 py-3 border-b border-gray-500 text-sm">Rest Amount</td>
+                        <td class="px-2 py-3 border-b border-gray-500 text-sm">
+                            Rest Amount
+                        </td>
                         <td class="text-center px-2 py-3 border-b border-gray-500">25%</td>
-                        <td class="text-right px-2 py-3 border-b border-gray-500">{{ restTaxableIncome }}</td>
+                        <td class="text-right px-2 py-3 border-b border-gray-500">
+                            {{ restTaxableIncome }}
+                        </td>
                         <td class="text-right px-2 py-3 border-b border-gray-500">0</td>
                     </tr>
                     <tr>
@@ -64,7 +96,8 @@
                         <td colspan="4" class="py-2">
                             <div class="flex justify-between items-center px-2">
                                 <label class="text-[15px] text-blue-400 w-2/3" for="">Total Investment Amount :</label>
-                                <input v-model.number="investedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                                <input v-model.number="investedAmount" type="number"
+                                    class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3" />
                             </div>
                         </td>
                     </tr>
@@ -72,14 +105,17 @@
                         <td colspan="4" class="py-2">
                             <div class="flex justify-between items-center px-2">
                                 <label class="text-[15px] text-blue-400 w-2/3" for="">Allowable Investment Amount :</label>
-                                <input v-model="allowedInvestedAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                                <input v-model="allowedInvestedAmount" type="number"
+                                    class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3" />
                             </div>
                         </td>
                     </tr>
                     <tr class="bg-[#1e344e]">
                         <td colspan="4" class="py-2">
                             <div class="flex justify-between items-center px-2">
-                                <p class="text-[15px] text-blue-400">Redemption for investment :</p>
+                                <p class="text-[15px] text-blue-400">
+                                    Redemption for investment :
+                                </p>
                                 <p class="text-right pr-3">{{ applicableDiscount }}</p>
                             </div>
                         </td>
@@ -88,148 +124,234 @@
                         <td colspan="4" class="pt-2 pb-4">
                             <div class="flex justify-between items-center px-2">
                                 <p class="text-[15px] text-blue-400 font-bold">AIT :</p>
-                                <input v-model="aitAmount" type="number" class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3">
+                                <input v-model="aitAmount" type="number"
+                                    class="focus:outline-none app-secondary-bg py-1 px-3 border border-gray-500 rounded-sm text-right w-1/3" />
                             </div>
                         </td>
                     </tr>
                     <tr class="bg-gray-600">
                         <td colspan="4" class="pt-2 py-2">
                             <div class="flex justify-between items-center px-2">
-                                <p class="text-[17px] font-semibold text-[#00b4f9]">Actual Total Payable Amount :</p>
-                                <p class="text-right font-bold text-xl text-[#dab53e] pr-3">{{ actualTotalPayableAmount }}</p>
+                                <p class="text-[17px] font-semibold text-[#00b4f9]">
+                                    Actual Total Payable Amount :
+                                </p>
+                                <p class="text-right font-bold text-xl text-[#dab53e] pr-3">
+                                    {{ actualTotalPayableAmount }}
+                                </p>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="mt-5 flex justify-end">
+            <!-- <button @click="showModal = !showModal" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
+                Print Preview
+            </button> -->
+            <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
+                Print Preview
+            </button>
+            <button @click="closePreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
+                close Preview
+            </button>
+        </div>
+        <div v-if="printPreview">
+            <PrintingView :closePreview="closePreview" :salaryData="props.salaryData" :noPrint="props.nonPrintable" />
+        </div>
+
     </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
+import PrintingView from "./PrintingView.vue";
+
 const props = defineProps({
-    totalTaxableAmount: Number
-})
+    totalTaxableAmount: Number,
+    nonPrintable: String,
+    salaryData: Object,
+    getSum: Object
+});
 
-// const emits = defineEmits(['remainingAmountAfterFirstThreeLakh'])
+const investedAmount = ref("");
+const aitAmount = ref("");
+const printPreview = ref(true)
 
-const investedAmount = ref('')
-const aitAmount = ref('')
+const closePreview = () => {
+    if(printPreview.value === true){
+        printPreview.value = false
+    }
+}
 
 const remainingAmountAfterFirstThreeLakh = computed(() => {
-    return props.totalTaxableAmount >= 300000 ? (props.totalTaxableAmount - 300000) : 0
-})
+    return props.totalTaxableAmount >= 300000
+        ? props.totalTaxableAmount - 300000
+        : 0;
+});
 
 // For first one lakh
 const nextOneLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
 
-    if (remainingAmountAfterFirstThreeLakh.value < 100000){
-        payableAmount = Math.round(remainingAmountAfterFirstThreeLakh.value * 5 / 100)
-        remainingAmount = 0
+    if (remainingAmountAfterFirstThreeLakh.value < 100000) {
+        payableAmount = Math.round(
+            (remainingAmountAfterFirstThreeLakh.value * 5) / 100
+        );
+        remainingAmount = 0;
     }
-    if(remainingAmountAfterFirstThreeLakh.value >= 100000){
-        payableAmount = Math.round(100000 * 5 / 100)
-        remainingAmount = remainingAmountAfterFirstThreeLakh.value - 100000
+    if (remainingAmountAfterFirstThreeLakh.value >= 100000) {
+        payableAmount = Math.round((100000 * 5) / 100);
+        remainingAmount = remainingAmountAfterFirstThreeLakh.value - 100000;
     }
 
     return {
-        "payableAmount": payableAmount,
-        "remainingAmount": remainingAmount
-    }
-})
+        payableAmount: payableAmount,
+        remainingAmount: remainingAmount,
+    };
+});
 
 // For next three lakh
 const nextThreeLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
-    if (nextOneLakhTaxableIncome.value.remainingAmount < 300000){
-        payableAmount = Math.round(nextOneLakhTaxableIncome.value.remainingAmount * 10 / 100)
-        remainingAmount = 0
+    if (nextOneLakhTaxableIncome.value.remainingAmount < 300000) {
+        payableAmount = Math.round(
+            (nextOneLakhTaxableIncome.value.remainingAmount * 10) / 100
+        );
+        remainingAmount = 0;
     }
-    if(nextOneLakhTaxableIncome.value.remainingAmount >= 300000){
-        payableAmount = Math.round(300000 * 10 / 100)
-        remainingAmount = nextOneLakhTaxableIncome.value.remainingAmount - 300000
+    if (nextOneLakhTaxableIncome.value.remainingAmount >= 300000) {
+        payableAmount = Math.round((300000 * 10) / 100);
+        remainingAmount = nextOneLakhTaxableIncome.value.remainingAmount - 300000;
     }
 
     return {
-        "payableAmount": payableAmount,
-        "remainingAmount": remainingAmount
-    }
-})
+        payableAmount: payableAmount,
+        remainingAmount: remainingAmount,
+    };
+});
 
 // For next four lakh
 const nextFourLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
-    if (nextThreeLakhTaxableIncome.value.remainingAmount < 400000){
-        payableAmount = Math.round(nextThreeLakhTaxableIncome.value.remainingAmount * 15 / 100)
-        remainingAmount = 0
+    if (nextThreeLakhTaxableIncome.value.remainingAmount < 400000) {
+        payableAmount = Math.round(
+            (nextThreeLakhTaxableIncome.value.remainingAmount * 15) / 100
+        );
+        remainingAmount = 0;
     }
-    if(nextThreeLakhTaxableIncome.value.remainingAmount >= 400000){
-        payableAmount = Math.round(400000 * 15 / 100)
-        remainingAmount = nextThreeLakhTaxableIncome.value.remainingAmount - 400000
+    if (nextThreeLakhTaxableIncome.value.remainingAmount >= 400000) {
+        payableAmount = Math.round((400000 * 15) / 100);
+        remainingAmount = nextThreeLakhTaxableIncome.value.remainingAmount - 400000;
     }
 
     return {
-        "payableAmount": payableAmount,
-        "remainingAmount": remainingAmount
-    }
-})
+        payableAmount: payableAmount,
+        remainingAmount: remainingAmount,
+    };
+});
 
 // For next five lakh
 const nextFiveLakhTaxableIncome = computed(() => {
     let payableAmount = 0;
     let remainingAmount = 0;
-    if (nextFourLakhTaxableIncome.value.remainingAmount < 500000){
-        payableAmount = Math.round(nextFourLakhTaxableIncome.value.remainingAmount * 20 / 100)
-        remainingAmount = 0
+    if (nextFourLakhTaxableIncome.value.remainingAmount < 500000) {
+        payableAmount = Math.round(
+            (nextFourLakhTaxableIncome.value.remainingAmount * 20) / 100
+        );
+        remainingAmount = 0;
     }
-    if(nextFourLakhTaxableIncome.value.remainingAmount >= 500000){
-        payableAmount = Math.round(500000 * 20 / 100)
-        remainingAmount = nextFourLakhTaxableIncome.value.remainingAmount - 500000
+    if (nextFourLakhTaxableIncome.value.remainingAmount >= 500000) {
+        payableAmount = Math.round((500000 * 20) / 100);
+        remainingAmount = nextFourLakhTaxableIncome.value.remainingAmount - 500000;
     }
 
     return {
-        "payableAmount": payableAmount,
-        "remainingAmount": remainingAmount
-    }
-})
+        payableAmount: payableAmount,
+        remainingAmount: remainingAmount,
+    };
+});
 
 const restTaxableIncome = computed(() => {
-    return (nextFiveLakhTaxableIncome.value.remainingAmount > 0) ?  Math.round(nextFiveLakhTaxableIncome.value.remainingAmount * 25 / 100) : 0
-})
+    return nextFiveLakhTaxableIncome.value.remainingAmount > 0
+        ? Math.round((nextFiveLakhTaxableIncome.value.remainingAmount * 25) / 100)
+        : 0;
+});
 
 const totalPayable = computed(() => {
-    return nextOneLakhTaxableIncome.value.payableAmount 
-            + nextThreeLakhTaxableIncome.value.payableAmount 
-            + nextFourLakhTaxableIncome.value.payableAmount 
-            + nextFiveLakhTaxableIncome.value.payableAmount 
-            + restTaxableIncome.value
-})
+    return (
+        nextOneLakhTaxableIncome.value.payableAmount +
+        nextThreeLakhTaxableIncome.value.payableAmount +
+        nextFourLakhTaxableIncome.value.payableAmount +
+        nextFiveLakhTaxableIncome.value.payableAmount +
+        restTaxableIncome.value
+    );
+});
 
 const allowedInvestedAmount = computed(() => {
-    return props.totalTaxableAmount >= 300000 ? Math.round(props.totalTaxableAmount * 20 / 100) : 0
-})
+    return props.totalTaxableAmount >= 300000
+        ? Math.round((props.totalTaxableAmount * 20) / 100)
+        : 0;
+});
 
 const applicableDiscount = computed(() => {
     let discount = 0;
-    if(investedAmount.value <= allowedInvestedAmount.value){
-        discount = Math.round(+investedAmount.value * 15 / 100)
+    if (investedAmount.value <= allowedInvestedAmount.value) {
+        discount = Math.round((+investedAmount.value * 15) / 100);
     }
-    if(investedAmount.value > allowedInvestedAmount.value){
-        discount = Math.round(allowedInvestedAmount.value * 15 / 100)
+    if (investedAmount.value > allowedInvestedAmount.value) {
+        discount = Math.round((allowedInvestedAmount.value * 15) / 100);
     }
-    return discount
-})
+    return discount;
+});
 
 const actualTotalPayableAmount = computed(() => {
-    return totalPayable.value - (applicableDiscount.value + +aitAmount.value)
-})
+    return totalPayable.value - (applicableDiscount.value + +aitAmount.value);
+});
 </script>
 
 <style scoped>
+/* .modal-body {
+    height: auto;
+} */
 
+.bg-gray-800-opacity {
+    background-color: #040507d0;
+}
+
+/* animation for vue transition tag */
+
+.fade-up-down-enter-active {
+    transition: all 0.3s ease;
+}
+
+.fade-up-down-leave-active {
+    transition: all 0.3s ease;
+}
+
+.fade-up-down-enter {
+    transform: translateY(10%);
+    opacity: 0;
+}
+
+.fade-up-down-leave-to {
+    transform: translateY(10%);
+    opacity: 0;
+}
+
+.fade-enter-active {
+    -webkit-transition: opacity 2s;
+    transition: opacity 0.3s;
+}
+
+.fade-leave-active {
+    transition: opacity 0.3s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
 </style>

@@ -86,10 +86,12 @@ input[type=number] {
   background-color: #d2a003;
 }
 
-@media print {
-  body, html {
-    width: 100%;
+.print-preview-width{
+  width: 1240px;
+  margin: 0 auto;
 }
+
+@media print {
   button {
     display: none !important;
   }
@@ -102,4 +104,24 @@ input[type=number] {
   .input-group-wrapper{
     border: none !important;
   }
+  .noPrint{
+    visibility: hidden;
+  }
+  #printArea{
+    visibility: visible !important;
+  }
+  .modal-margin{
+    margin: 0 !important;
+  }
+  #printArea{
+    width: 22cm;
+    height: 29.7cm;
+    /* margin: 30mm 45mm 30mm 45mm;  */
+    page-break-after:avoid !important;
+    /* change the margins as you want them to be. */
+  } 
+  .print-preview-width{
+    width: 100% !important;
+  }
+
 }
