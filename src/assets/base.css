@@ -17,6 +17,9 @@ body{
 .common-input{
   @apply focus:outline-none bg-[#1a2e44] w-[40%] py-2 px-3
 }
+.print-preview-input .common-input, .print-preview-input .percentage-input{
+  background-color: white !important;
+}
 .percentage-input{
   @apply bg-gray-600 w-[20%] focus:outline-none py-2 text-center
 }
@@ -90,7 +93,13 @@ input[type=number] {
   width: 1240px;
   margin: 0 auto;
 }
-
+.print-preview-input input, .print-preview-input .input-group-wrapper {
+  border: none !important;
+  /* text-align: center !important; */
+}
+.print-preview-input .print-preview-gross-salary {
+  text-align: center !important;
+}
 @media print {
   button {
     display: none !important;
@@ -110,18 +119,30 @@ input[type=number] {
   #printArea{
     visibility: visible !important;
   }
-  .modal-margin{
-    margin: 0 !important;
-  }
-  #printArea{
-    width: 22cm;
-    height: 29.7cm;
-    /* margin: 30mm 45mm 30mm 45mm;  */
-    page-break-after:avoid !important;
-    /* change the margins as you want them to be. */
-  } 
   .print-preview-width{
     width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
+
+  @page {
+      size: A4;
+      margin: 0;
+  }
+
+  body {
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box;
+  }
+  body, html, #printArea {
+    width: 100%;
+    height: 100%;
+    font-size: 13px !important;
+  }
+  .actual-payable-amount-bg {
+    background-color: #f0f0f1;
+    -webkit-print-color-adjust: exact;
+}
 
 }

@@ -144,19 +144,43 @@
                 </tbody>
             </table>
         </div>
-        <div class="mt-5 flex justify-end">
-            <!-- <button @click="showModal = !showModal" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
-                Print Preview
-            </button> -->
+        <div class="mt-5 pb-4 pr-3 flex justify-end">
             <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
                 Print Preview
             </button>
-            <button @click="closePreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
-                close Preview
-            </button>
         </div>
         <div v-if="printPreview">
-            <PrintingView :closePreview="closePreview" :salaryData="props.salaryData" :noPrint="props.nonPrintable" />
+            <PrintingView 
+            :closePreview="closePreview" 
+            :salaryData="props.salaryData"
+            :employeeName="props.employeeName"
+            :designation="props.designation"
+            :department="props.department" 
+            :noPrint="props.nonPrintable" 
+            :getSum="props.getSum"
+            :homeRentTaxExemption="props.homeRentTaxExemption" 
+            :medicalTaxExemption="props.medicalTaxExemption" 
+            :conveyanceTaxExemption="props.conveyanceTaxExemption"
+            :taxableBasicSalary="props.taxableBasicSalary"
+            :taxableHomeRent="props.taxableHomeRent"
+            :taxableMedicalAllowance="props.taxableMedicalAllowance"
+            :taxableConveyanceAllowance="props.taxableConveyanceAllowance"
+            :festiveBonusOne="props.festiveBonusOne"
+            :festiveBonusTwo="props.festiveBonusTwo"
+            :totalTaxableAmount="props.totalTaxableAmount"
+            :remainingAmountAfterFirstThreeLakh="remainingAmountAfterFirstThreeLakh"
+            :nextOneLakhTaxableIncome="nextOneLakhTaxableIncome"
+            :nextThreeLakhTaxableIncome="nextThreeLakhTaxableIncome"
+            :nextFourLakhTaxableIncome="nextFourLakhTaxableIncome"
+            :nextFiveLakhTaxableIncome="nextFiveLakhTaxableIncome"
+            :restTaxableIncome="restTaxableIncome"
+            :totalPayable="totalPayable"
+            :investedAmount="investedAmount"
+            :allowedInvestedAmount="allowedInvestedAmount"
+            :applicableDiscount="applicableDiscount"
+            :aitAmount="aitAmount"
+            :actualTotalPayableAmount="actualTotalPayableAmount"
+             />
         </div>
 
     </div>
@@ -167,10 +191,22 @@ import { ref, computed } from "vue";
 import PrintingView from "./PrintingView.vue";
 
 const props = defineProps({
-    totalTaxableAmount: Number,
     nonPrintable: String,
     salaryData: Object,
-    getSum: Object
+    employeeName: String,
+    designation: String,
+    department: String, 
+    getSum: Object,
+    homeRentTaxExemption: Number,
+    medicalTaxExemption: Number,
+    conveyanceTaxExemption: Number,
+    taxableBasicSalary: Number,
+    taxableHomeRent: Number,
+    taxableMedicalAllowance: Number,
+    taxableConveyanceAllowance: Number,
+    festiveBonusOne: Number,
+    festiveBonusTwo: Number,
+    totalTaxableAmount: Number,
 });
 
 const investedAmount = ref("");

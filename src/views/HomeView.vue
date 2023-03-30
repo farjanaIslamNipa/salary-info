@@ -4,15 +4,15 @@
       <div class="block lg:flex gap-5">
         <div class="flex gap-2 items-end">
           <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Name:</label>
-          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+          <input v-model="employeeName" type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
         </div>
         <div class="flex gap-2 items-end">
           <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Designation:</label>
-          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+          <input v-model="designation" type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
         </div>
         <div class="flex gap-2 items-end">
           <label for="" class="leading-none text-[14px] xl:text-[15px] w-[80px] lg:w-auto">Department:</label>
-          <input type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
+          <input v-model="department" type="text" class="focus:outline-none bg-transparent px-1 border-b border-gray-500 rounded-sm capitalize text-gray-400 w-[220px] lg:w-[240px] xl:w-[250px]">
         </div>
       </div>
     </div>
@@ -136,13 +136,27 @@
     </div>
       <div class="xl:col-span-3 lg:col-span-4 col-span-12">
         <div class="app-secondary-bg ">
-          <PayableAmountCalculation :totalTaxableAmount="totalTaxableAmount" nonPrintable="nonPrintable" :salaryData="salaryData" :getSum="getSum" />
+          <PayableAmountCalculation 
+           nonPrintable="nonPrintable"
+          :salaryData="salaryData"
+          :employeeName="employeeName"
+          :designation="designation"
+          :department="department" 
+          :getSum="getSum" 
+          :homeRentTaxExemption="homeRentTaxExemption"
+          :medicalTaxExemption="medicalTaxExemption"
+          :conveyanceTaxExemption="conveyanceTaxExemption"
+          :taxableBasicSalary="taxableBasicSalary"
+          :taxableHomeRent="taxableHomeRent"
+          :taxableMedicalAllowance="taxableMedicalAllowance"
+          :taxableConveyanceAllowance="taxableConveyanceAllowance"
+          :festiveBonusOne="festiveBonusOne"
+          :festiveBonusTwo="festiveBonusTwo"
+          :totalTaxableAmount="totalTaxableAmount"
+           />
         </div>
       </div>
     </div>
-    <!-- <div v-if="printingSection" id="printSection">
-      <PrintingView />
-    </div> -->
   </div>
 
 </template>
@@ -151,10 +165,12 @@
 import sourceData from "../../data.json";
 import SalaryTableRow from "@/components/SalaryTableRow.vue";
 import PayableAmountCalculation from "@/components/PayableAmountCalculation.vue";
-// import PrintingView from "@/components/PrintingView.vue";
 import { ref, computed } from "vue";
 
 const salaryData = ref([...sourceData]);
+const employeeName = ref('')
+const designation = ref('')
+const department = ref('')
 const festiveBonusOne = ref('')
 const festiveBonusTwo = ref('')
 
@@ -195,6 +211,7 @@ const homeRentTaxExemption = computed(() => {
       }
 })
 
+console.log(typeof homeRentTaxExemption.value, 'type');
 // Medical
 const medicalTaxExemption = computed(() => {
   let getMedicalTaxExemption = Math.round(getSum.value.totalBasicSalary * 10 / 100)
@@ -267,18 +284,11 @@ const totalTaxableAmount = computed(() => {
   return getTotalTaxableAmount
 })
 
-const printingSection = ref(false)
-
-// const print = () => {
-//   printingSection.value = true
-//   const printContent = document.getElementById('printSection').innerHTML
-//   const originalContent = document.body.innerHTML;
-//   document.body.innerHTML = printContent;
-//   window.print();
-//   document.body.innerHTML = originalContent;
-
-// }
-
+const taxData = ref({
+  "homeRentTaxExemption": homeRentTaxExemption.value,
+  "medicalTaxExemption": medicalTaxExemption.value,
+  "conveyanceTaxExemption": conveyanceTaxExemption.value,
+})
 </script>
 
 <style scoped></style>

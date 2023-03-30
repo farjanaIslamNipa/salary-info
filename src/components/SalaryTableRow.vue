@@ -3,32 +3,32 @@
         <span>{{ salary.month }}</span><span>&nbsp;{{ (new Date().getFullYear()) - 1 }}</span>
     </td>
     <td class="common-td">
-        <input v-model.trim="salaryInfo.grossSalary" type="number" class="bg-transparent focus:outline-none py-2 border border-gray-500 rounded-sm px-3 text-right w-full">
+        <input v-model.trim="salaryInfo.grossSalary" type="number" class="bg-transparent focus:outline-none py-2 border border-gray-500 rounded-sm px-3 text-right w-full  print-preview-gross-salary">
     </td>
     <td class="common-td">
         <div class="input-group-wrapper">
-        <input v-model.trim="salaryInfo.basicPercentage" type="number" class="common-input w-1/2">
+        <input v-model.trim="salaryInfo.basicPercentage" type="number" class="common-input w-2/3">
         <input v-model="percentage" readonly type="text" class="percentage-input w-1/3">
         <input v-model="salaryInfo.basicSalary" readonly type="number" class="common-input text-right w-full">
         </div>
     </td>
     <td class="common-td">
         <div class="input-group-wrapper w-full">
-        <input v-model.trim="salaryInfo.homeRentPercentage" type="number" class="common-input w-1/2">
+        <input v-model.trim="salaryInfo.homeRentPercentage" type="number" class="common-input w-2/3">
         <input v-model="percentage" readonly type="text" class="percentage-input w-1/3">
         <input v-model="salaryInfo.homeRent" readonly type="number" class="common-input text-right w-full">
         </div>
     </td>
     <td class="common-td">
         <div class="input-group-wrapper w-full">
-        <input v-model.trim="salaryInfo.medicalPercentage" type="number" class="common-input w-1/2">
+        <input v-model.trim="salaryInfo.medicalPercentage" type="number" class="common-input w-2/3">
         <input v-model="percentage" readonly type="text" class="percentage-input w-1/3">
         <input v-model="salaryInfo.medicalAllowance" readonly type="number" class="common-input text-right w-full">
         </div>
     </td>
     <td class="common-td">
         <div class="input-group-wrapper w-full">
-        <input v-model.trim="salaryInfo.conveyancePercentage" type="number" class="common-input w-1/2">
+        <input v-model.trim="salaryInfo.conveyancePercentage" type="number" class="common-input w-2/3">
         <input v-model="percentage" readonly type="text" class="percentage-input w-1/3">
         <input v-model="salaryInfo.conveyanceAllowance" readonly type="number" class="common-input text-right w-full">
         </div>
