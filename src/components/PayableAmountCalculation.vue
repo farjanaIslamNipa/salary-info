@@ -145,8 +145,8 @@
             </table>
         </div>
         <div class="mt-5 pb-4 pr-3 flex justify-end">
-            <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
-                Print Preview
+            <button @click="print" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
+                Print
             </button>
         </div>
         <div v-if="printPreview">
@@ -211,7 +211,7 @@ const props = defineProps({
 
 const investedAmount = ref("");
 const aitAmount = ref("");
-const printPreview = ref(true)
+const printPreview = ref(false)
 
 const closePreview = () => {
     if(printPreview.value === true){
@@ -346,6 +346,9 @@ const applicableDiscount = computed(() => {
 const actualTotalPayableAmount = computed(() => {
     return totalPayable.value - (applicableDiscount.value + +aitAmount.value);
 });
+const print = () => {
+  printPreview.value = true
+};
 </script>
 
 <style scoped>

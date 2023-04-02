@@ -17,8 +17,8 @@
         <div class="py-1 capitalize">
           <h3 class="text-xl font-bold text-center text-gray-700">salary information</h3>
         </div>
-        <div class="overflow-x-auto">
-            <table class="w-[954px] lg:w-full">
+        <div class="">
+            <table class="w-full">
                 <colgroup>
                   <col span="1" style="width: 16%" />
                   <col span="1" style="width: 12%" />
@@ -95,7 +95,7 @@
             </table>
         </div>
       </div>
-      <!-- <div class="grid grid-cols-2 gap-2 mt-10">
+      <div class="grid grid-cols-2 gap-2 mt-10">
         <div class="mt-5">
         <table class="mb-3">
             <tbody>
@@ -226,18 +226,18 @@
             </table>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, onMounted, ref, watch, watchEffect } from "vue";
 import SalaryTableRow from "./SalaryTableRow.vue";
 
 const props = defineProps({
   closePreview: Function,
-  salaryData: Object,
+  salaryData: Array,
   noPrint: String,
   employeeName: String,
   designation: String,
@@ -267,12 +267,23 @@ const props = defineProps({
   actualTotalPayableAmount: Number,
 });
 
-const print = () => {
-  document.getElementById(props.noPrint).className += " noPrint";
-  window.print();
-};
+// const print = computed(() => {
+//   document.getElementById(props.noPrint).className += " noPrint";
+//   return window.print();
+// })
+// onMounted(() => {
+//   document.getElementById(props.noPrint).className += " noPrint";
+//   window.print();
 
-console.log(props.taxData, "data");
+// })
+
+watch(props.employeeName, (value) => {
+      console.log(value, 'value');
+    },
+      {
+       deep: true
+      }
+    );
 </script>
 
 <style scoped></style>
