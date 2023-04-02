@@ -232,12 +232,12 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch, watchEffect } from "vue";
+import { ref } from "vue";
 import SalaryTableRow from "./SalaryTableRow.vue";
 
 const props = defineProps({
   closePreview: Function,
-  salaryData: Array,
+  salaryData: Object,
   noPrint: String,
   employeeName: String,
   designation: String,
@@ -267,23 +267,12 @@ const props = defineProps({
   actualTotalPayableAmount: Number,
 });
 
-// const print = computed(() => {
-//   document.getElementById(props.noPrint).className += " noPrint";
-//   return window.print();
-// })
-// onMounted(() => {
-//   document.getElementById(props.noPrint).className += " noPrint";
-//   window.print();
+const print = () => {
+  document.getElementById(props.noPrint).className += " noPrint";
+  window.print();
+};
 
-// })
-
-watch(props.employeeName, (value) => {
-      console.log(value, 'value');
-    },
-      {
-       deep: true
-      }
-    );
+console.log(props.taxData, "data");
 </script>
 
 <style scoped></style>

@@ -284,6 +284,11 @@ const totalTaxableAmount = computed(() => {
   return getTotalTaxableAmount
 })
 
+const taxData = ref({
+  "homeRentTaxExemption": homeRentTaxExemption.value,
+  "medicalTaxExemption": medicalTaxExemption.value,
+  "conveyanceTaxExemption": conveyanceTaxExemption.value,
+})
 </script>
 
 <style scoped></style>
