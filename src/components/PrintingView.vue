@@ -1,5 +1,5 @@
 <template>
-  <div id="printArea" class=" p-5 border absolute left-0 right-0 top-0 text-black w-full">
+  <div id="printArea" class="bg-gray-100 p-5 border absolute left-0 right-0 top-0 text-black w-full">
     <div class="bg-white px-4 pt-6 pb-10 mx-auto print-preview-width">
       <div class="flex justify-between gap-4">
           <div class="space-y-1">
@@ -7,13 +7,17 @@
             <p class="text-[15px] font-bold">Designation: <span class="ml-1 font-semibold capitalize">{{ props.designation }}</span></p>
             <p class="text-[15px] font-bold">Department: <span class="ml-1 font-semibold capitalize">{{ props.department }}</span></p>
           </div>
+          <div>
+            <button @click="print" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1 mx-1">Print</button>
+            <button @click="props.closePreview" class="bg-gray-600 text-white font-semibold rounded-sm px-6 py-1 mx-1">Cancel</button>
+          </div>
       </div>
 
       <div class="mt-3">
         <div class="py-1 capitalize">
           <h3 class="text-xl font-bold text-center text-gray-700">salary information</h3>
         </div>
-        <div class="">
+        <div class="overflow-x-auto">
             <table class="w-[954px] lg:w-full">
                 <colgroup>
                   <col span="1" style="width: 16%" />
@@ -91,7 +95,7 @@
             </table>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-2 mt-10">
+      <!-- <div class="grid grid-cols-2 gap-2 mt-10">
         <div class="mt-5">
         <table class="mb-3">
             <tbody>
@@ -222,13 +226,13 @@
             </table>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import SalaryTableRow from "./SalaryTableRow.vue";
 
 const props = defineProps({
@@ -262,16 +266,13 @@ const props = defineProps({
   aitAmount: Number,
   actualTotalPayableAmount: Number,
 });
-onMounted(() => {
+
+const print = () => {
   document.getElementById(props.noPrint).className += " noPrint";
   window.print();
-})
+};
 
-// const print = () => {
-//   document.getElementById(props.noPrint).className += " noPrint";
-//   window.print();
-// };
-
+console.log(props.taxData, "data");
 </script>
 
 <style scoped></style>
