@@ -146,8 +146,11 @@
         </div>
         <div class="mt-5 pb-4 pr-3 flex justify-end">
             <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
-                Print Preview
+                Print
             </button>
+            <!-- <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
+                Print Preview
+            </button> -->
         </div>
         <div v-if="printPreview">
             <PrintingView 
