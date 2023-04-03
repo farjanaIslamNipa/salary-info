@@ -17,9 +17,6 @@ body{
 .common-input{
   @apply focus:outline-none bg-[#1a2e44] w-[40%] py-2 px-3
 }
-.print-preview-input .common-input, .print-preview-input .percentage-input{
-  background-color: white !important;
-}
 .percentage-input{
   @apply bg-gray-600 w-[20%] focus:outline-none py-2 text-center
 }
@@ -35,7 +32,12 @@ body{
 .left-align-td{
   @apply text-sm font-bold px-2 py-2 text-left
 }
+.print-preview-input .common-input, .print-preview-input .percentage-input{
+  background-color: white !important;
+}
+.print-preview-input .common-input{
 
+}
 .app-primary-bg {
   background-color: var(--appPrimaryBg);
 }
@@ -116,6 +118,10 @@ input[type=number] {
   .noPrint{
     visibility: hidden;
   }
+  .common-input{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
   #printArea{
     visibility: visible !important;
   }
@@ -124,7 +130,9 @@ input[type=number] {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-
+.print-color{
+  -webkit-print-color-adjust: exact;
+}
   @page {
       size: A4;
       margin: 0;

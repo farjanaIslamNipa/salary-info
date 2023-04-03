@@ -1,5 +1,5 @@
 <template>
-  <div id="printArea" class="bg-gray-100 p-5 border absolute left-0 right-0 top-0 text-black w-full">
+  <div id="printArea" class="p-5 absolute left-0 right-0 top-0 text-black w-full">
     <div class="bg-white px-4 pt-6 pb-10 mx-auto print-preview-width">
       <div class="flex justify-between gap-4">
           <div class="space-y-1">
@@ -13,9 +13,9 @@
           </div>
       </div>
 
-      <div class="mt-3">
+      <div>
         <div class="py-1 capitalize">
-          <h3 class="text-xl font-bold text-center text-gray-700">salary information</h3>
+          <h3 class="text-lg font-bold text-center text-gray-700">salary information</h3>
         </div>
         <div class="">
             <table class="w-full">
@@ -28,7 +28,7 @@
                   <col span="1" style="width: 18%" />
                 </colgroup>
                 <thead>
-                    <tr class="border-t border-b">
+                    <tr class="border-t border-b bg-blue-100 print-color">
                     <th scope="col" class="left-align-td">Month</th>
                     <th scope="col" class="left-align-td text-center">Gross Salary</th>
                     <th scope="col" class="left-align-td text-center">Basic</th>
@@ -39,55 +39,89 @@
                 </thead>
                 <tbody>
                     <tr
-                    v-for="salary in salaryData"
-                    :key="salary.id"
+                    v-for="salary in props.salaryData"
+                    :key="salary.id"     
                     class="border-b print-preview-input"
                   >
-                    <SalaryTableRow :salary="salary" />
+                  <td class="px-3 text-[12px] w-2/12">
+                    <span>{{ salary.month }}</span><span>&nbsp;{{ (new Date().getFullYear()) - 1 }}</span>
+                  </td>
+                  <td class="text-[12px] border-l border-r">
+                      <input v-model.trim="salary.grossSalary" type="number" class="bg-transparent focus:outline-none border border-gray-500 rounded-sm px-3 text-right w-full  print-preview-gross-salary">
+                  </td>
+                  <td class="text-[12px] border-l border-r">
+                      <div class="input-group-wrapper py-1">
+                      <input v-model.trim="salary.basicPercentage" type="number" class="focus:outline-none w-[40%] px-3">
+                      <input value="%" readonly type="text" class="focus:outline-none px-3 w-1/3">
+                      <input v-model="salary.basicSalary" readonly type="number" class="focus:outline-none px-3 text-right w-full">
+                      </div>
+                  </td>
+                  <td class="text-[12px] border-l border-r">
+                      <div class="input-group-wrapper py-1 w-full">
+                      <input v-model.trim="salary.homeRentPercentage" type="number" class="focus:outline-none w-[40%] px-3">
+                      <input value="%" readonly type="text" class="focus:outline-none px-3 w-1/3">
+                      <input v-model="salary.homeRent" readonly type="number" class="focus:outline-none px-3 text-right w-full">
+                      </div>
+                  </td>
+                  <td class="text-[12px] border-l border-r">
+                      <div class="input-group-wrapper py-1 w-full">
+                      <input v-model.trim="salary.medicalPercentage" type="number" class="focus:outline-none w-[40%] px-3">
+                      <input value="%" readonly type="text" class="focus:outline-none px-3 w-1/3">
+                      <input v-model="salary.medicalAllowance" readonly type="number" class="focus:outline-none px-3 text-right w-full">
+                      </div>
+                  </td>
+                  <td class="text-[12px] border-l border-r">
+                      <div class="input-group-wrapper py-1 w-full">
+                      <input v-model.trim="salary.conveyancePercentage" type="number" class="focus:outline-none px-3 w-[40%]">
+                      <input value="%" readonly type="text" class="focus:outline-none px-3 w-2/3">
+                      <input v-model="salary.conveyanceAllowance" readonly type="number" class="focus:outline-none px-3 text-right w-full">
+                      </div>
+                  </td>
+                    <!-- <SalaryTableRow :salary="salary" /> -->
                   </tr>
                 </tbody>
                 <tfoot>
-                  <tr class="">
-                    <td scope="col" class="left-align-td">Total</td>
-                    <td scope="col" class="right-align-td text-center">
+                  <tr class="bg-[#7f92d738] print-color">
+                    <td scope="col" class="text-sm font-bold px-2 py-1 text-left">Total</td>
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-center">
                       {{ props.getSum.totalGrossSalary }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.getSum.totalBasicSalary }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.getSum.totalHomeRent }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.getSum.totalMedicalAllowance }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.getSum.totalConveyanceAllowance }}
                     </td>
                   </tr>
-                  <tr>
-                    <td colspan="2" class="left-align-td">Tax Exemption</td>
-                    <td scope="col" class="right-align-td">0</td>
-                    <td scope="col" class="right-align-td">
+                  <tr class="bg-[#7297cf70] print-color">
+                    <td colspan="2" class="text-sm font-bold px-2 py-1 text-left">Tax Exemption</td>
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">0</td>
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.homeRentTaxExemption }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.medicalTaxExemption }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.conveyanceTaxExemption }}
                     </td>
                   </tr>
-                  <tr>
-                    <td colspan="2" class="left-align-td">Taxable</td>
-                    <td scope="col" class="right-align-td">{{ props.taxableBasicSalary }}</td>
-                    <td scope="col" class="right-align-td">
+                  <tr class="bg-[#7297cfb8] print-color">
+                    <td colspan="2" class="text-sm font-bold px-2 py-1 text-left">Taxable</td>
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">{{ props.taxableBasicSalary }}</td>
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.taxableHomeRent }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.taxableMedicalAllowance }}
                     </td>
-                    <td scope="col" class="right-align-td">
+                    <td scope="col" class="text-[13px] font-bold px-2 py-1 text-right">
                       {{ props.taxableConveyanceAllowance }}
                     </td>
                   </tr>
@@ -95,136 +129,130 @@
             </table>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-2 mt-10">
-        <div class="mt-5">
-        <table class="mb-3">
-            <tbody>
-                <tr>
-                    <td><p class="font-semibold text-[15px] py-1">Festive Bonus One:</p></td>
-                    <td><p class="font-semibold text-[15px] pl-3 py-1 text-right">{{ props.festiveBonusOne ? props.festiveBonusOne : 0 }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-semibold text-[15px] py-1">Festive Bonus Two:</p></td>
-                    <td><p class="font-semibold text-[15px] pl-3 py-1 text-right">{{ props.festiveBonusOne ? props.festiveBonusOne : 0 }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-bold text-[16px] py-1">Total Taxable Income:</p></td>
-                    <td><p class="font-bold text-[16px] pl-3 py-1 text-right">{{ props.totalTaxableAmount }}</p></td>
-                </tr>
-                
-            </tbody>
-        </table>
-        <hr class=" mr-5">
-        <table class="mt-3">
-            <tbody>
-                <tr>
-                    <td><p class="font-bold text-[16px] py-1">Total Payable Amount:</p></td>
-                    <td><p class="font-bold text-[16px] pl-3 py-1 text-right">{{ props.totalPayable }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-semibold text-[15px] py-1">Total Investment Amount:</p></td>
-                    <td><p class="font-semibold text-[15px] pl-3 py-1 text-right">{{ props.investedAmount ? props.investedAmount : 0 }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-semibold text-[15px] py-1">Allowable Investment Amount:</p></td>
-                    <td><p class="font-semibold text-[15px] pl-3 py-1 text-right">{{ props.allowedInvestedAmount ? props.allowedInvestedAmount : 0 }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-semibold text-[15px] py-1">Redemption for investment:</p></td>
-                    <td><p class="font-semibold text-[15px] pl-3 py-1 text-right">{{ props.applicableDiscount ? props.applicableDiscount : 0 }}</p></td>
-                </tr>
-                <tr>
-                    <td><p class="font-bold text-[15px] py-1">AIT:</p></td>
-                    <td><p class="font-bold text-[15px] pl-3 py-1 text-right">{{ props.aitAmount ? props.aitAmount : 0 }}</p></td>
-                </tr>
-            </tbody>
-        </table>
-            <div class="p-2 mt-3 bg-gray-100 actual-payable-amount-bg mr-4">
-                <p class="font-bold text-lg">Actual Total Payable Amount: <span>{{ props.actualTotalPayableAmount }}</span></p>
-            </div>
+      <div class="mt-8 mb-6 bg-[#e9e6e6] print-color p-2">
+        <div class="flex items-center justify-between">
+          <p class="font-semibold text-[14px]">Festive Bonus One:&nbsp;&nbsp;<span class="font-bold">{{ props.festiveBonusOne ? props.festiveBonusOne : 0 }}</span></p>
+          <p class="font-semibold text-[14px]">Festive Bonus Two:&nbsp;&nbsp;<span class="font-bold">{{ props.festiveBonusOne ? props.festiveBonusOne : 0 }}</span></p>
+          <p class="font-bold text-[14px]">Total Taxable Income:&nbsp;&nbsp;<span class="font-bold">{{ props.totalTaxableAmount }}</span></p>
         </div>
+      </div>
+      <div class="grid grid-cols-2 gap-10">
         <div>
-          <div class="py-1 mt-4 lg:mt-0">
-            <p class="text-lg font-bold">Payable Amount</p>
+          <div class="py-1 lg:mt-0">
+            <p class="text-[17px] font-bold">Payable Amount</p>
           </div>
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead class="border-t border-b">
-                <th class="text-left pl-2">For</th>
-                <th class="left-align-td text-center">Rate</th>
-                <th class="right-align-td">Payable</th>
-                <th class="right-align-td">Remaining</th>
+          <div class="">
+            <table class="w-full text-[13px] border">
+              <thead class="border-t border-b bg-blue-100 print-color">
+                <th class="text-left py-1 px-2">For</th>
+                <th class=" text-center py-1 px-2">Rate</th>
+                <th class="text-right py-1 px-2">Payable</th>
+                <th class="text-right py-1 px-2">Remaining</th>
               </thead>
               <tbody>
                 <tr>
-                  <td class="px-2 py-3 border-b text-sm">
+                  <td class="px-2 py-2 border-b text-sm">
                     First <span class="font-bold">3</span> Lakh
                   </td>
-                  <td class="text-center px-2 py-3 border-b">0</td>
-                  <td class="text-right px-2 py-3 border-b">0</td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-center px-2 py-2 border-b">0</td>
+                  <td class="text-right px-2 py-2 border-b">0</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.remainingAmountAfterFirstThreeLakh }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-2 py-3 border-b text-sm">
+                  <td class="px-2 py-2 border-b text-sm">
                     Next <span class="font-bold">1</span> Lakh
                   </td>
-                  <td class="text-center px-2 py-3 border-b">5%</td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-center px-2 py-2 border-b">5%</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextOneLakhTaxableIncome.payableAmount }}
                   </td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextOneLakhTaxableIncome.remainingAmount }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-2 py-3 border-b text-sm">
+                  <td class="px-2 py-2 border-b text-sm">
                     Next <span class="font-bold">3</span> Lakh
                   </td>
-                  <td class="text-center px-2 py-3 border-b">10%</td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-center px-2 py-2 border-b">10%</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextThreeLakhTaxableIncome.payableAmount }}
                   </td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextThreeLakhTaxableIncome.remainingAmount }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-2 py-3 border-b text-sm">
+                  <td class="px-2 py-2 border-b text-sm">
                     Next <span class="font-bold">4</span> Lakh
                   </td>
-                  <td class="text-center px-2 py-3 border-b">15%</td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-center px-2 py-2 border-b">15%</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextFourLakhTaxableIncome.payableAmount }}
                   </td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextFourLakhTaxableIncome.remainingAmount }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-2 py-3 border-b text-sm">
+                  <td class="px-2 py-2 border-b text-sm">
                     Next <span class="font-bold">5</span> Lakh
                   </td>
-                  <td class="text-center px-2 py-3 border-b">20%</td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-center px-2 py-2 border-b">20%</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextFiveLakhTaxableIncome.payableAmount }}
                   </td>
-                  <td class="text-right px-2 py-3 border-b">
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.nextFiveLakhTaxableIncome.remainingAmount }}
                   </td>
                 </tr>
                 <tr>
-                  <td class="px-2 py-3 text-sm font-bold">Rest Amount</td>
-                  <td class="text-center px-2 py-3">25%</td>
-                  <td class="text-right px-2 py-3">
+                  <td class="px-2 py-2 text-sm font-bold border-b">Rest Amount</td>
+                  <td class="text-center px-2 py-2 border-b">25%</td>
+                  <td class="text-right px-2 py-2 border-b">
                     {{ props.restTaxableIncome }}
                   </td>
-                  <td class="text-right px-2 py-3">0</td>
+                  <td class="text-right px-2 py-2 border-b">0</td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="mt-8">
+        <table class="w-full">
+            <tbody>
+                <tr>
+                    <td><p class="font-bold text-[16px] py-1">Total Payable Amount:</p></td>
+                    <td><p class="font-bold text-[16px] py-1 text-right">{{ props.totalPayable }}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="font-semibold text-[14px] py-1">Total Investment Amount:</p></td>
+                    <td><p class="font-semibold text-[14px] py-1 text-right">{{ props.investedAmount ? props.investedAmount : 0 }}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="font-semibold text-[14px] py-1">Allowable Investment Amount:</p></td>
+                    <td><p class="font-semibold text-[14px] py-1 text-right">{{ props.allowedInvestedAmount ? props.allowedInvestedAmount : 0 }}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="font-semibold text-[14px] py-1">Redemption for investment:</p></td>
+                    <td><p class="font-semibold text-[14px] py-1 text-right">{{ props.applicableDiscount ? props.applicableDiscount : 0 }}</p></td>
+                </tr>
+                <tr>
+                    <td><p class="font-bold text-[14px] py-1">AIT:</p></td>
+                    <td><p class="font-bold text-[14px] py-1 text-right">{{ props.aitAmount ? props.aitAmount : 0 }}</p></td>
+                </tr>
+                <tr>
+                  <td class="border-t pt-2">
+                    <p class="font-bold text-[17px] text-blue-800 print-color">Actual Total Payable Amount:</p>
+                  </td>
+                  <td class="border-t pt-2">
+                    <p class="font-bold text-[17px] text-blue-800 text-right print-color">{{ props.actualTotalPayableAmount }}</p>
+                  </td>
+                </tr>
+            </tbody>
+        </table>
         </div>
       </div>
     </div>
@@ -232,9 +260,6 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import SalaryTableRow from "./SalaryTableRow.vue";
-
 const props = defineProps({
   closePreview: Function,
   salaryData: Object,
@@ -271,8 +296,14 @@ const print = () => {
   document.getElementById(props.noPrint).className += " noPrint";
   window.print();
 };
-
-console.log(props.taxData, "data");
+// watch(props.salaryData, currentValue => {
+//     console.log(props.salaryData, 'data');
+//     if(currentValue){
+//        console.log('yes');
+//     }else {
+//         console.log('no');
+//     }
+// }, {deep: true})
 </script>
 
 <style scoped></style>

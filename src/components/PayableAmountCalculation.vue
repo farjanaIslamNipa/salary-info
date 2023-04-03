@@ -146,11 +146,8 @@
         </div>
         <div class="mt-5 pb-4 pr-3 flex justify-end">
             <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
-                Print
-            </button>
-            <!-- <button @click="printPreview = !printPreview" class="bg-teal-600 text-white font-semibold rounded-sm px-6 py-1">
                 Print Preview
-            </button> -->
+            </button>
         </div>
         <div v-if="printPreview">
             <PrintingView 
@@ -190,7 +187,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 import PrintingView from "./PrintingView.vue";
 
 const props = defineProps({
@@ -214,7 +211,7 @@ const props = defineProps({
 
 const investedAmount = ref("");
 const aitAmount = ref("");
-const printPreview = ref(true)
+const printPreview = ref(false)
 
 const closePreview = () => {
     if(printPreview.value === true){
@@ -349,6 +346,14 @@ const applicableDiscount = computed(() => {
 const actualTotalPayableAmount = computed(() => {
     return totalPayable.value - (applicableDiscount.value + +aitAmount.value);
 });
+watch(props.salaryData, currentValue => {
+    if(currentValue){
+       console.log('yes');
+    }else {
+        console.log('no');
+    }
+}, {deep: true})
+
 </script>
 
 <style scoped>
